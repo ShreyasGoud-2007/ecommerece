@@ -1,0 +1,234 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: 'Inter', sans-serif;
+  background: #07111f;
+  color: #f8fafc;
+}
+
+button, input {
+  font: inherit;
+}
+
+.navbar {
+  height: 82px;
+  padding: 0 8%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid #1e293b;
+  background: #07111f;
+}
+
+.logo {
+  font-size: 23px;
+  letter-spacing: 1px;
+}
+
+.logo span {
+  color: #38bdf8;
+  margin-left: 5px;
+}
+
+.nav-links {
+  display: flex;
+  gap: 32px;
+}
+
+.nav-links a {
+  color: #cbd5e1;
+  text-decoration: none;
+  font-size: 14px;
+}
+
+.hero {
+  min-height: calc(100vh - 140px);
+  padding: 70px 8%;
+  display: grid;
+  grid-template-columns: 1.2fr 0.8fr;
+  align-items: center;
+  gap: 70px;
+  background: radial-gradient(ellipse at 15% 40%, #102a43 0%, #07111f 60%);
+}
+
+.eyebrow {
+  color: #38bdf8;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 3px;
+}
+
+.hero-content h1 {
+  font-size: clamp(42px, 5vw, 70px);
+  line-height: 1.1;
+  margin: 22px 0;
+}
+
+.hero-content h1 span {
+  color: #38bdf8;
+}
+
+.description {
+  color: #a7b6c9;
+  line-height: 1.8;
+  max-width: 480px;
+}
+
+.features {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 18px;
+  margin-top: 32px;
+  color: #cbd5e1;
+  font-size: 12px;
+}
+
+.login-card {
+  padding: 34px;
+  background: #0f1c2e;
+  border: 1px solid #26374b;
+  border-radius: 18px;
+  box-shadow: 0 25px 70px #0005;
+}
+
+.login-card h2 {
+  margin: 0 0 8px;
+  font-size: 26px;
+}
+
+.login-subtitle {
+  color: #94a3b8;
+  font-size: 13px;
+  margin-bottom: 26px;
+}
+
+.role-switch {
+  display: flex;
+  padding: 4px;
+  background: #07111f;
+  border-radius: 9px;
+  margin-bottom: 25px;
+}
+
+.role-switch button {
+  flex: 1;
+  border: 0;
+  border-radius: 7px;
+  padding: 12px 5px;
+  color: #94a3b8;
+  background: transparent;
+  cursor: pointer;
+}
+
+.role-switch button.active {
+  background: #183b57;
+  color: #7dd3fc;
+}
+
+.login-card form {
+  display: flex;
+  flex-direction: column;
+}
+
+.login-card label {
+  font-size: 13px;
+  margin-bottom: 8px;
+  color: #dbeafe;
+}
+
+.login-card input {
+  padding: 13px;
+  border-radius: 8px;
+  border: 1px solid #34465c;
+  background: #091525;
+  color: white;
+  outline: none;
+  margin-bottom: 19px;
+}
+
+.login-card input:focus {
+  border-color: #38bdf8;
+}
+
+.login-button {
+  background: #0284c7;
+  color: white;
+  border: 0;
+  padding: 14px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 700;
+  margin-top: 4px;
+}
+
+.login-button:hover {
+  background: #0369a1;
+}
+
+.signup-text {
+  text-align: center;
+  color: #94a3b8;
+  font-size: 13px;
+  margin-top: 23px;
+}
+
+.signup-text button {
+  background: none;
+  border: 0;
+  color: #38bdf8;
+  cursor: pointer;
+}
+
+.security-note {
+  text-align: center;
+  font-size: 11px;
+  color: #64748b;
+  margin-bottom: 0;
+}
+
+footer {
+  padding: 22px;
+  text-align: center;
+  border-top: 1px solid #1e293b;
+  color: #64748b;
+  font-size: 12px;
+}
+
+@media (max-width: 850px) {
+  .hero {
+    grid-template-columns: 1fr;
+    gap: 40px;
+    padding: 45px 6%;
+  }
+
+  .navbar {
+    padding: 0 6%;
+  }
+
+  .nav-links {
+    gap: 12px;
+  }
+}
+
+@media (max-width: 480px) {
+  .nav-links a {
+    font-size: 11px;
+  }
+
+  .logo {
+    font-size: 17px;
+  }
+
+  .login-card {
+    padding: 23px;
+  }
+
+  .features {
+    flex-direction: column;
+  }
+}
