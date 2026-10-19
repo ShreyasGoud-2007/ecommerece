@@ -1,84 +1,58 @@
-import { useState } from "react";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import "./App.css";
 
-function App() {
-  const [role, setRole] = useState("customer");
+import { CartProvider } from "./context/CartContext";
+import { useCart } from "./context/CartContext";
+
+import Navbar from "./components/Navbar";
+import Footer from "./components/Footer";
+import Cart from "./components/Cart";
+
+import HomePage from "./pages/HomePage";
+import ProductsPage from "./pages/ProductsPage";
+import ProductDetailPage from "./pages/ProductDetailPage";
+import CartPage from "./pages/CartPage";
+import LoginPage from "./pages/LoginPage";
+import SignupPage from "./pages/SignupPage";
+import ContactPage from "./pages/ContactPage";
+
+// Inner shell reads cart context (must be inside CartProvider)
+function AppShell() {
+  const { isCartOpen, setCartOpen } = useCart();
 
   return (
-    <div className="app">
-      <nav className="navbar">
-        <h2 className="logo">SECURE<span>VISION</span></h2>
-        <div className="nav-links">
-          <a href="#home">Home</a>
-          <a href="#products">Products</a>
-          <a href="#contact">Contact</a>
-        </div>
-      </nav>
+    <>
+      <Navbar />
 
-      <main className="hero" id="home">
-        <section className="hero-content">
-          <p className="eyebrow">SMART SECURITY. TOTAL CONTROL.</p>
-          <h1>Your Safety.<br />Our <span>Priority.</span></h1>
-          <p className="description">
-            Discover reliable CCTV cameras and professional safety
-            equipment designed to protect what matters most.
-          </p>
+      <Routes>
+        <Route path="/"              element={<HomePage />} />
+        <Route path="/products"      element={<ProductsPage />} />
+        <Route path="/products/:id"  element={<ProductDetailPage />} />
+        <Route path="/cart"          element={<CartPage />} />
+        <Route path="/login"         element={<LoginPage />} />
+        <Route path="/signup"        element={<SignupPage />} />
+        <Route path="/contact"       element={<ContactPage />} />
+        {/* Fallback — redirect unknown paths to home */}
+        <Route path="*"              element={<HomePage />} />
+      </Routes>
 
-          <div className="features">
-            <span>✓ HD Surveillance</span>
-            <span>✓ Trusted Equipment</span>
-            <span>✓ Reliable Support</span>
-          </div>
-        </section>
+      <Footer />
 
-        <section className="login-card">
-          <h2>Welcome Back</h2>
-          <p className="login-subtitle">Sign in to your SecureVision account</p>
-
-          <div className="role-switch">
-            <button
-              className={role === "customer" ? "active" : ""}
-              onClick={() => setRole("customer")}
-            >
-              Customer
-            </button>
-            <button
-              className={role === "owner" ? "active" : ""}
-              onClick={() => setRole("owner")}
-            >
-              Store Owner
-            </button>
-          </div>
-
-          <form onSubmit={(e) => {
-            e.preventDefault();
-            alert("Login backend will be connected in the next step.");
-          }}>
-            <label>Email Address</label>
-            <input type="email" placeholder="you@example.com" required />
-
-            <label>Password</label>
-            <input type="password" placeholder="Enter your password" required />
-
-            <button className="login-button" type="submit">
-              Sign In as {role === "customer" ? "Customer" : "Owner"}
-            </button>
-          </form>
-
-          <p className="signup-text">
-            New here? <button onClick={() => alert("Signup page will be added next.")}>
-              Create an account
-            </button>
-          </p>
-          <p className="security-note">Your security is our priority.</p>
-        </section>
-      </main>
-
-      <footer id="contact">
-        © 2026 SecureVision · CCTV & Safety Solutions
-      </footer>
-    </div>
+      {/* Slide-in cart drawer — available on every page */}
+      <Cart
+        isOpen={isCartOpen}
+        onClose={() => setCartOpen(false)}
+      />
+    </>
   );
 }
 
-export default App;
+export default function App() {
+  return (
+    <BrowserRouter>
+      <CartProvider>
+        <AppShell />
+      </CartProvider>
+    </BrowserRouter>
+  );
+}
